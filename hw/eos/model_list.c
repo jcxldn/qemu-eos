@@ -720,6 +720,21 @@ struct eos_model_desc eos_model_list[] = {
         .dedicated_movie_mode   = 0,            // camera has support for it. TODO: Set to 1 when implementing it.
     },
     {
+        .name                   = MODEL_NAME_90D,
+        .digic_version          = 8,
+        .ram_size               = 0x80000000,   // (850D): 3GB?  smemShowFix has things in BA region.
+                                                // This will mean changes are required to CACHEABLE etc macros.
+                                                // Might be 2GB depending on how mirroring between 0x1000 and 0x40001000
+                                                // works, listed as that for now, may be simpler.
+        .card_led_address       = 0xD01300D4,
+        .current_task_addr      = 0x28,         /* (850D): fixme: read from virtual memory */
+        .uart_rx_interrupt      = 0x15D,        // (850D): TODO: taken from 200D. Probably valid but Has to be validated.
+        .uart_tx_interrupt      = 0x16D,        // (850D): TODO: taken from 200D. Probably valid but Has to be validated.
+        .rom0_size              = 0x02000000,   /* 32MB (main ROM) */
+        .rom1_size              = 0x02000000,   /* 32MB (secondary ROM) */
+        .dedicated_movie_mode   = 0,            // (850D): camera has support for it. TODO: Set to 1 when implementing it.
+    },
+    {
         .name = NULL,
         .digic_version = 0,
     }
